@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.arotnov.vaadin</groupId>
+		<artifactId>vaadin-osgi</artifactId>
+		<version>0.1.0</version>
+	</parent>
+	<artifactId>websocket-api</artifactId>
+	<version>1.1</version>
+	<packaging>bundle</packaging>
+	<description>OSGI fragment for javax.websocket-api bundle. Enables ServiceLoader consuming functions.</description>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Fragment-Host>javax.websocket-api</Fragment-Host>
+						<Require-Capability>
+							osgi.extender;filter:="(osgi.extender=osgi.serviceloader.processor)",
+							osgi.serviceloader;filter:="(osgi.serviceloader=javax.websocket.server.ServerEndpointConfig$Configurator)";resolution:=optional;cardinality:=multiple
+						</Require-Capability>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

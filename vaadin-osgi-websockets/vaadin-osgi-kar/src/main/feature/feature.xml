@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0">
+	<feature name="vaadin-osgi-kar">
+		<feature prerequisite="true" dependency="true">http</feature>	
+		<feature prerequisite="true" dependency="true">http-whiteboard</feature>
+		<bundle start-level="70">mvn:com.vaadin/vaadin-shared/${vaadin.version}</bundle>
+		<config name="org.ops4j.pax.web" append="true">
+         	org.ops4j.pax.web.session.timeout=1 
+        </config>
+	</feature>
+</features>
